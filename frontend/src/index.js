@@ -14,7 +14,8 @@ root.render(
   <React.StrictMode>
     <HelmetProvider context={helmetContext}>
       {/* <LoginScreen /> */}
-      <PrincipalScreen/>
+      {/* <PrincipalScreen/> */}
+      <App/>
     </HelmetProvider>
   </React.StrictMode>
 );

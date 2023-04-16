@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import LoginScreen from './pantallas/LoginScreen';
+import { HelmetProvider } from 'react-helmet-async';
+const helmetContext = {};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <HelmetProvider context={helmetContext}>
+      <LoginScreen />
+    </HelmetProvider>
   </React.StrictMode>
 );
 

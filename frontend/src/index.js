@@ -6,13 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import LoginScreen from './pantallas/LoginScreen';
 import { HelmetProvider } from 'react-helmet-async';
+import PrincipalScreen from './pantallas/PrincipalScreen';
 const helmetContext = {};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <HelmetProvider context={helmetContext}>
-      <LoginScreen />
+      {/* <LoginScreen /> */}
+      <PrincipalScreen/>
     </HelmetProvider>
   </React.StrictMode>
 );

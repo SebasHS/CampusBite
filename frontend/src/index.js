@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { StoreProvider } from './store';
+import { StoreProvider } from './Store';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,11 +14,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <HelmetProvider context={helmetContext}>
-      {/* <LoginScreen /> */}
-      {/* <PrincipalScreen/> */}
-      <App/>
-    </HelmetProvider>
+    <StoreProvider>
+      <HelmetProvider context={helmetContext}>
+        {/* <LoginScreen /> */}
+        {/* <PrincipalScreen/> */}
+        <App/>
+      </HelmetProvider>
+    </StoreProvider>
   </React.StrictMode>
 );
 

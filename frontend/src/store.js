@@ -9,16 +9,11 @@ const initialState = {
 };
 
 function reducer(state, action){
-    switch(action.type){
-        case 'CARD_ADD_ITEM':
-            // añadir al carrito de compras
-            return{
-                ...state,
-                cart:{
-                    ...state.cart,
-                    cartItems: [...state.cart.cartItems, action.payload],
-                }
-            }
+    switch(action.type) {
+        case 'USER_LOGIN':
+            return { ...state, userInfo: action.payload };
+        default:
+            return state
     }
 }
 

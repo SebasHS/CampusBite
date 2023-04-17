@@ -3,13 +3,19 @@ import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import  Button  from 'react-bootstrap/Button';
 import Axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { Store } from '../Store';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginScreen(){
 
+    const { state, dispatch: ctxDispatch} = useContext(Store);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    
 
     const submitHandler = async (e) =>{
         e.preventDefault();
@@ -18,9 +24,12 @@ export default function LoginScreen(){
                 email,
                 password,
             });
-            console.log(data);
+            ctxDispatch({ type: 'USER_LOGIN', payload: data });
+            localStorage.setItem('userInfo', JSON.stringify(data));
+            navigate('/');
         } catch (err) {
-            
+            alert('Email o contraseña invalida ')
+            console.log(err)
         }
     }
 

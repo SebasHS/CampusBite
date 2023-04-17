@@ -22,7 +22,7 @@ userRouter.post(
                 return;
             }
         }
-        res.status(401).send({ message: ' email o contraseña invalida'})
+        res.status(401).send({ message: ' Email o contraseña invalida'})
     })
 );
 

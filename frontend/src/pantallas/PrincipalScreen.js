@@ -12,7 +12,7 @@ function PrincipalScreen(){
             <Row>
                 <div className='products'>
                     {data.products.map((product) =>(
-                        <Producto product={product}></Producto>
+                        <Producto key={product.slug} product={product}></Producto>
                     ))}
                 </div>
             </Row>

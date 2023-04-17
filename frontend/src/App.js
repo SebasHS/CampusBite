@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import './App.css';
 import PrincipalScreen from './pantallas/PrincipalScreen';
 import DetallesPlatosScreen from './pantallas/DetallesPlatosScreen';
-
+import LoginScreen from './pantallas/LoginScreen';
 
 
 function App() {
@@ -10,12 +10,14 @@ function App() {
         <BrowserRouter>
         <div>
             <header>
-                <a href="/">CampusBite</a>
+                <Link to="/">CampusBite</Link>
+                <Link to="/login">LoginScreen</Link>
             </header>
             <main>
                 <Routes>
                     <Route path="/product/:slug" element={<DetallesPlatosScreen />}/>
                     <Route path="/" element={<PrincipalScreen />}/>
+                    <Route path="/login" element={<LoginScreen />}/>
                 </Routes>
             </main>
         </div>

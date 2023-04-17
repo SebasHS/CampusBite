@@ -8,8 +8,14 @@ import { Store } from './Store';
 
 
 function App() {
-    const { state } = useContext(Store);
+    const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
+
+    const logoutHandler = () => {
+        ctxDispatch({ type: 'USER_LOGOUT' });
+        localStorage.removeItem('userInfo');
+    }
+
     return(
         <BrowserRouter>
         <div>
@@ -17,7 +23,10 @@ function App() {
                 <Link to="/">CampusBite</Link>
 
                 {userInfo ? (
+                    <>
                     <span>{userInfo.name} </span>
+                    <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
+                    </> 
                 ) : (
                         <Link to="/login">LoginScreen</Link>
                 )}

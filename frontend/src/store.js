@@ -3,15 +3,17 @@ import { createContext, useReducer } from "react";
 export const Store = createContext();
 
 const initialState = {
-    cart: {
-        cartItems: [],
-    },
+    userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null,
 };
 
 function reducer(state, action){
     switch(action.type) {
         case 'USER_LOGIN':
             return { ...state, userInfo: action.payload };
+        case 'USER_LOGOUT':
+            return { ...state, userInfo: null };
         default:
             return state
     }

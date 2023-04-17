@@ -1,21 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { StoreProvider } from './store';
+import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import LoginScreen from './pantallas/LoginScreen';
 import { HelmetProvider } from 'react-helmet-async';
-import PrincipalScreen from './pantallas/PrincipalScreen';
 const helmetContext = {};
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <HelmetProvider context={helmetContext}>
-      {/* <LoginScreen /> */}
-      <PrincipalScreen/>
-    </HelmetProvider>
+    <StoreProvider>
+      <HelmetProvider context={helmetContext}>
+        <App/>
+      </HelmetProvider>
+    </StoreProvider>
   </React.StrictMode>
 );
 

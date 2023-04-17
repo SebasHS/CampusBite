@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import PrincipalScreen from './pantallas/PrincipalScreen';
+import DetallesPlatosScreen from './pantallas/DetallesPlatosScreen';
 
 
 
@@ -13,6 +14,7 @@ function App() {
             </header>
             <main>
                 <Routes>
+                    <Route path="/product/:slug" element={<DetallesPlatosScreen />}/>
                     <Route path="/" element={<PrincipalScreen />}/>
                 </Routes>
             </main>

@@ -5,6 +5,7 @@ import DetallesPlatosScreen from './pantallas/DetallesPlatosScreen';
 import LoginScreen from './pantallas/LoginScreen';
 import { useContext } from 'react';
 import { Store } from './Store';
+import RegisterScreen from './pantallas/RegisterScreen';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
                     <Route path="/product/:slug" element={<DetallesPlatosScreen />}/>
                     <Route path="/" element={<PrincipalScreen />}/>
                     <Route path="/login" element={<LoginScreen />}/>
+                    <Route path="/register" element={<RegisterScreen />}/>
                 </Routes>
             </main>
         </div>

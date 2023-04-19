@@ -62,3 +62,66 @@ main{
   border: #000 1px solid !important;
 }
 
+.MenuNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.MenuNav a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.MenuNav a:hover {
+  color: #e74c3c;
+}
+
+.MenuNav span {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.MenuNav button {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.MenuNav button:hover {
+  background-color: #c0392b;
+}
+
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  .MenuNav {
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .MenuNav a {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .MenuNav span {
+    margin-bottom: 10px;
+  }
+
+  .MenuNav button {
+    margin-top: 10px;
+  }
+}
+
+

@@ -20,7 +20,7 @@ function App() {
     return(
         <BrowserRouter>
         <div>
-            <header>
+            <header className='MenuNav'>
                 <Link to="/">CampusBite</Link>
 
                 {userInfo ? (

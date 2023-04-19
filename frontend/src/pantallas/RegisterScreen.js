@@ -66,7 +66,7 @@ return(
                 <Form.Label> Contraseña</Form.Label>
                 <Form.Control type="password" required onChange={(e) => setPassword(e.target.value)}/> 
             </Form.Group>
-            <Form.Group className="mb-3" controlId="password">
+            <Form.Group className="mb-3" controlId="confpassword">
                 <Form.Label> Confirmar Contraseña</Form.Label>
                 <Form.Control type="password" required onChange={(e) => setConfirmPassword(e.target.value)}/> 
             </Form.Group>

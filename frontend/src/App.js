@@ -6,6 +6,7 @@ import LoginScreen from './pantallas/LoginScreen';
 import { useContext } from 'react';
 import { Store } from './Store';
 import RegisterScreen from './pantallas/RegisterScreen';
+import EditarDatosScreen from './pantallas/EditarDatosScreen';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                     <>
                     <span>{userInfo.name} </span>
                     <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
+                    <Link to="/editardatos">editardatos</Link>
                     </> 
                 ) : (
                         <Link to="/login">LoginScreen</Link>
@@ -39,6 +41,7 @@ function App() {
                     <Route path="/" element={<PrincipalScreen />}/>
                     <Route path="/login" element={<LoginScreen />}/>
                     <Route path="/register" element={<RegisterScreen />}/>
+                    <Route path="/editardatos" element={<EditarDatosScreen />}/>
                 </Routes>
             </main>
         </div>

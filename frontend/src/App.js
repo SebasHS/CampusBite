@@ -21,14 +21,17 @@ function App() {
     return(
         <BrowserRouter>
         <div>
-            <header>
+            <header className='MenuNav'>
                 <Link to="/">CampusBite</Link>
 
                 {userInfo ? (
                     <>
                     <span>{userInfo.name} </span>
-                    <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
-                    <Link to="/editardatos">editardatos</Link>
+                    <div className='MenuPostLogueo'>
+                        <Link to="/editardatos">Editar Datos</Link>
+                        <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
+                    </div>
+                    
                     </> 
                 ) : (
                         <Link to="/login">LoginScreen</Link>

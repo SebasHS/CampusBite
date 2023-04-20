@@ -16,6 +16,7 @@ function App() {
     const logoutHandler = () => {
         ctxDispatch({ type: 'USER_LOGOUT' });
         localStorage.removeItem('userInfo');
+        window.location.href = '/login';
     }
 
     return(

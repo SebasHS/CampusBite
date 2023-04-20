@@ -41,8 +41,10 @@ export default function EditarDatosScreen(){
                 name,
                 email,
                 password
+            },
+            {
+                headers: { Authorization: `Software2 ${userInfo.token}`}
             })
-            console.log(data)
             dispatch({
                 type: 'UPDATE_SUCCESS',
 
@@ -67,19 +69,19 @@ export default function EditarDatosScreen(){
             <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control value={ name } required onChange={(e) => setName(e.target.value)}/>
+                <Form.Control value={ name }  onChange={(e) => setName(e.target.value)}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="email">
                 <Form.Label> Correo electrónico</Form.Label>
-                <Form.Control type="email" value= { email } required onChange={(e) => setEmail(e.target.value)}/> 
+                <Form.Control type="email" value= { email }  onChange={(e) => setEmail(e.target.value)}/> 
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
                 <Form.Label> Contraseña</Form.Label>
-                <Form.Control type="password" required onChange={(e) => setPassword(e.target.value)}/> 
+                <Form.Control type="password"  onChange={(e) => setPassword(e.target.value)}/> 
             </Form.Group>
-            <Form.Group className="mb-3" controlId="password">
+            <Form.Group className="mb-3" controlId="confpassword">
                 <Form.Label> Confirmar Contraseña</Form.Label>
-                <Form.Control type="password" required onChange={(e) => setConfirmPassword(e.target.value)}/> 
+                <Form.Control type="password"  onChange={(e) => setConfirmPassword(e.target.value)}/> 
             </Form.Group>
             <div className='mb-3'>
                 <Button type="submit">Confirmar cambios</Button>

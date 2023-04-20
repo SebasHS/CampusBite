@@ -34,7 +34,7 @@ export default function EditarDatosScreen(){
     });
     
     const submitHandler = async (e) =>{
-        e.preventDefaul();
+        e.preventDefault();
         try {
             const { data } = await axios.put('/api/users/profile',
             {

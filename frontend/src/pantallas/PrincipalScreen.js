@@ -3,10 +3,14 @@ import data from '../data';
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Producto from '../componentes/Producto';
+import { Helmet } from 'react-helmet-async';
 
 function PrincipalScreen(){
     return(
         <div>
+            <Helmet>
+            <title>Carta</title>
+            </Helmet>
         <main>
             <h1>Carta de cafetería</h1>
             <Row>

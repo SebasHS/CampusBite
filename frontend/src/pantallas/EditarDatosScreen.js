@@ -65,7 +65,7 @@ export default function EditarDatosScreen(){
             <Helmet>
                  <title> Editar datos</title>
             </Helmet>
-            <h1 className='mb-3'>Inicio de Sesión</h1>
+            <h1 className='mb-3'>Editar datos</h1>
             <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
@@ -76,11 +76,11 @@ export default function EditarDatosScreen(){
                 <Form.Control type="email" value= { email }  onChange={(e) => setEmail(e.target.value)}/> 
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
-                <Form.Label> Contraseña</Form.Label>
+                <Form.Label> Nueva contraseña</Form.Label>
                 <Form.Control type="password"  onChange={(e) => setPassword(e.target.value)}/> 
             </Form.Group>
             <Form.Group className="mb-3" controlId="confpassword">
-                <Form.Label> Confirmar Contraseña</Form.Label>
+                <Form.Label> Confirmar la nueva Contraseña</Form.Label>
                 <Form.Control type="password"  onChange={(e) => setConfirmPassword(e.target.value)}/> 
             </Form.Group>
             <div className='mb-3'>

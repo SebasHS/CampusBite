@@ -59,8 +59,8 @@ return(
                 <Button type="submit">Iniciar Sesión</Button>
             </div>
             <div className= "mb-3">
-                ¿No tiene una cuenta?{' '}
-                <Link to={`/register?redirect=${redirect}`}> Crea tu cuenta</Link>
+                ¿No tienes una cuenta?{' '}
+                <Link to={`/register?redirect=${redirect}`}> Registrate</Link>
             </div>
         </Form>
     </Container>

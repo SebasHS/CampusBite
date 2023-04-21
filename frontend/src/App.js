@@ -27,7 +27,7 @@ function App() {
 
                 {userInfo ? (
                     <>
-                    <span>{userInfo.name} </span>
+                    <span>Hola, {userInfo.name} </span>
                     <div className='MenuPostLogueo'>
                         <Link to="/editardatos">Editar Datos</Link>
                         <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
@@ -35,7 +35,7 @@ function App() {
                     
                     </> 
                 ) : (
-                        <Link to="/login">LoginScreen</Link>
+                        <Link to="/login">Inicio de sesión</Link>
                 )}
                 
             </header>

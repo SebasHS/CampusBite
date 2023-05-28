@@ -2,10 +2,11 @@ import Container from 'react-bootstrap/Container';
 import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/Form';
 import  Button  from 'react-bootstrap/Button';
-import Axios from 'axios';
+
 import { useContext, useEffect, useState } from 'react';
 import { Store } from '../Store';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { ServiceUsuario } from '../services/ServiceUsuario';
 
 
 export default function LoginScreen(){
@@ -23,13 +24,11 @@ export default function LoginScreen(){
     const submitHandler = async (e) =>{
         e.preventDefault();
         try {
-            const { data } = await Axios.post('/api/users/login', {
-                email,
-                password,
-            });
-            ctxDispatch({ type: 'USER_LOGIN', payload: data });
-            localStorage.setItem('userInfo', JSON.stringify(data));
+            const res = await ServiceUsuario.validarUsuario(email,password);
+            ctxDispatch({ type: 'USER_LOGIN', payload: res });
+            localStorage.setItem('userInfo', JSON.stringify(res));
             navigate('/');
+            console.log(res)
         } catch (err) {
             alert('Email o contraseña invalida ');
         }

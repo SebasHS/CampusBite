@@ -142,3 +142,10 @@ main{
   color: #FF5117;
 }
 
+.rating span{
+  color: #FF5117
+}
+
+.img-large{
+  max-width: 100%;
+}

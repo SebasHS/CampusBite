@@ -6,6 +6,10 @@ const initialState = {
     userInfo: localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
     : null,
+
+    cart:{
+        cartItems: [],
+    },
 };
 
 function reducer(state, action){
@@ -14,8 +18,17 @@ function reducer(state, action){
             return { ...state, userInfo: action.payload };
         case 'USER_LOGOUT':
             return { ...state, userInfo: null };
+        case 'CART_ADD_ITEM':
+            // caso para añadir al carrito de compras
+            return {
+                ...state,
+                cart: {
+                    ...state.cart,
+                    cartItems: [...state.cart.cartItems, action.payload],
+                },
+            };
         default:
-            return state
+             return state;
     }
 }
 

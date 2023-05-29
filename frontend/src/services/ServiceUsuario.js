@@ -9,5 +9,5 @@ export class ServiceUsuario{
         const res = data;
         return res
     }
-    static crearUsuario()
+    static crearUsuario(){}
 }

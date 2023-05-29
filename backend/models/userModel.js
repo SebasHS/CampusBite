@@ -16,7 +16,7 @@ const User = mongoose.model("User", userSchema);
 export default User;
 */
 export default class userModel extends Model {
-  static iniciarUserModel() {
+    static iniciarUserModel() {
     const userSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },

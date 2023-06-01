@@ -1,6 +1,7 @@
 const data = {
     products: [
         {
+            _id: '1',
             name: 'Ceviche de pescado ',
             slug: 'ceviche-pescado',
             category: 'mariscos',
@@ -13,6 +14,7 @@ const data = {
             description: 'Plato de mariscos encebollados y cocidos en limón, acompañados de camote, maíz y cebolla morada.'
         },
         {
+            _id: '2',
             name: 'Papa a la huancaína',
             slug: 'papa-huancaina',
             category: 'vegetariano',
@@ -21,10 +23,11 @@ const data = {
             countInStock: 4,
             dealership: 'Cafeteria F2',
             rating: 4.0,
-            numReviews: 3,
+            numReviews: 5,
             description: 'Papas cocidas y cortadas en rodajas, bañadas en una salsa de ají amarillo, leche y queso.'
         },
         {
+            _id: '3',
             name: 'Anticuchos de corazón',
             slug: 'anticucho-corazon',
             category: 'carnes',
@@ -37,6 +40,7 @@ const data = {
             description: 'Brochetas de corazón de res marinado en ajo, comino y ají panca, asadas en parrilla.'
         },
         {
+            _id: '4',
             name: 'Tallarín saltado',
             slug: 'tallarin-saltado',
             category: 'carnes',
@@ -49,6 +53,7 @@ const data = {
             description: 'Tallarines salteados con carne, cebolla, tomate y ají amarillo, acompañados con papas fritas.'
         },
         {
+            _id: '5',
             name: 'Lomo saltado',
             slug: 'lomo-saltado',
             category: 'carnes',
@@ -61,6 +66,7 @@ const data = {
             description: 'Carne de res cortada en tiras y salteada con cebolla, tomate, cilantro y papas fritas.'
         },
         {
+            _id: '6',
             name: 'Rocoto relleno',
             slug: 'rocoto-relleno',
             category: 'carnes',
@@ -73,6 +79,7 @@ const data = {
             description: 'Rocoto relleno con carne picada, pasas, aceitunas y papas, gratinado con queso.'
         },
         {
+            _id: '7',
             name: 'Pollo a la brasa',
             slug: 'pollo-brasa',
             category: 'aves',
@@ -85,6 +92,7 @@ const data = {
             description: 'Pollo marinado en una mezcla de especias y cocido en parrilla.'
         },
         {
+            _id: '8',
             name: 'Adobo de cerdo',
             slug: 'adobo-cerdo',
             category: 'carnes',

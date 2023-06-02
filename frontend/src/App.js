@@ -10,6 +10,7 @@ import EditarDatosScreen from './pantallas/EditarDatosScreen';
 import Container from 'react-bootstrap/esm/Container';
 import Badge from 'react-bootstrap/Badge'
 import Nav from 'react-bootstrap/Nav'
+import CarritoCompraScreen from './pantallas/CarritoCompraScreen';
 
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
                 <Container className='mt-2'>
                     <Routes>
                         <Route path="/product/:slug" element={<DetallesPlatosScreen />}/>
+                        <Route path="/cart" element={<CarritoCompraScreen />}/>
                         <Route path="/" element={<PrincipalScreen />}/>
                         <Route path="/login" element={<LoginScreen />}/>
                         <Route path="/register" element={<RegisterScreen />}/>

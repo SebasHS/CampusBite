@@ -5,6 +5,8 @@ import Row from 'react-bootstrap/Row';
 import Producto from '../componentes/Producto';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useReducer } from 'react';
+import LoadingBox from '../componentes/LoadingBox';
+import MessageBox from '../componentes/MessageBox';
 import axios from 'axios';
 
 function PrincipalScreen(){
@@ -52,9 +54,19 @@ function PrincipalScreen(){
             <h1>Carta de cafetería</h1>
             <Row>
                 <div className='products'>
-                    {data.products.map((product) =>(
-                        <Producto key={product.slug} product={product}></Producto>
-                    ))}
+                {loading ? (
+                  <LoadingBox />
+                ) : error ? (
+                  <MessageBox variant="danger">{error}</MessageBox>
+                ) : (
+                  <Row>
+                    <div className='products'>
+                        {data.products.map((product) =>(
+                            <Producto key={product.slug} product={product}></Producto>
+                        ))}
+                    </div>
+                  </Row>
+                    )}
                 </div>
             </Row>
             

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useContext, useEffect, useReducer } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -10,6 +10,9 @@ import Rating from '../componentes/Rating';
 import Button from 'react-bootstrap/Button';
 import { Helmet } from 'react-helmet-async';
 import { Store } from '../Store';
+import { getError } from '../utils'
+import LoadingBox from '../componentes/LoadingBox';
+import MessageBox from '../componentes/MessageBox';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -25,6 +28,7 @@ const reducer = (state, action) => {
 };
 
 function DetallesPlatosScreen(){
+    const navigate = useNavigate();
     const params = useParams();
     const {slug} = params;
 
@@ -40,7 +44,7 @@ function DetallesPlatosScreen(){
             const result = await axios.get(`/api/products/slug/${slug}`);
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
           } catch (err) {
-            dispatch({ type: "FETCH_FAIL", payload: err.message });
+            dispatch({ type: "FETCH_FAIL", payload: getError(err) });
           }
         };
         fetchData();
@@ -60,10 +64,11 @@ function DetallesPlatosScreen(){
 
         ctxDispatch({type:'CART_ADD_ITEM', payload: {...product, quantity},
         });
-    }
+        navigate('/cart');
+    };
 
     return(
-        loading ? <div>Cargando</div>: error? <div>{error}</div>:
+        loading ? <div>Cargando</div> : error? <div>{error}</div>:
         <Row>
             <Col md={6}>
                 <img className="img-large" src={product.image} alt={product.name}></img>

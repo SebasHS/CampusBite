@@ -1,14 +1,16 @@
 import userModel from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import expressAsyncHandler from "express-async-handler";
-import { generateToken, isAuth } from "../utils.js";
+import generadorToken from "../clases/generadorToken.js";
+import GestorFactory from "./GestorFactory.js"
 
-export default class userGestor {
+export default class userGestor extends GestorFactory {
   // Debido a que en JS no se puede privatizar el constructor, supondremos que no se podra llamar al constructor fuera de la clase
   instance;
   userModel;
 
   constructor(userModel) {
+    super();
     this.userModel = userModel
   }
 
@@ -35,7 +37,7 @@ export default class userGestor {
           name: user.name,
           email: user.email,
           isAdmin: user.isAdmin,
-          token: generateToken(user),
+          token: generadorToken.generarToken(user),
         });
         return;
       }
@@ -44,7 +46,8 @@ export default class userGestor {
   })
 
   register = expressAsyncHandler(async (req, res) => {
-    const newUser = new userModel.iniciarUserModel()({
+    const nuevoUsuario = userModel.iniciarUserModel()
+    const newUser = new nuevoUsuario({
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password),
@@ -55,11 +58,33 @@ export default class userGestor {
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
-      token: generateToken(user),
+      token: generadorToken.generarToken(user),
     });
   })
 
+  //Metodos PUT
 
+  edit = expressAsyncHandler(async (req, res) => {
+    const user = await userModel.iniciarUserModel().findById(req.user._id);
+    if (user) {
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, 8);
+      }
+
+      const updatedUser = await user.save();
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+        token: generadorToken.generarToken(user),
+      });
+    } else {
+      res.status(404).send({ message: "User not found" });
+    }
+  })
 
 
 }

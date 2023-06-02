@@ -1,8 +1,5 @@
-import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import seedRouter from "./routes/seedRoutes.js";
-import userRouter from "./routes/userRoutes.js";
 import app from "./app.js";
 
 async function main() {

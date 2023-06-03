@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import data from '../data';
+// import data from '../data';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Producto from '../componentes/Producto';
@@ -61,7 +61,7 @@ function PrincipalScreen(){
                 ) : (
                   <Row>
                     <div className='products'>
-                        {data.products.map((product) =>(
+                        {products.map((product) =>(
                             <Producto key={product.slug} product={product}></Producto>
                         ))}
                     </div>

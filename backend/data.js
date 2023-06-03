@@ -20,7 +20,7 @@ const data = {
             category: 'vegetariano',
             image: '/images/papa-huancaina.jpg',
             price: 8,
-            countInStock: 0,
+            countInStock: 4,
             dealership: 'Cafeteria F2',
             rating: 4.0,
             numReviews: 5,

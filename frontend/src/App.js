@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Badge from 'react-bootstrap/Badge'
 import Nav from 'react-bootstrap/Nav'
 import CarritoCompraScreen from './pantallas/CarritoCompraScreen';
+import BarraBusqueda from './componentes/BarraBusqueda';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         <div>
             <header className='MenuNav'>
                 <Link to="/">CampusBite</Link>
-                <Nav>
+                    <BarraBusqueda/>
                     <Link to="/cart" className='nav-link'>
                         Carrito
                         {cart.cartItems.length > 0 && (
@@ -39,8 +40,7 @@ function App() {
                         )}
 
 
-                    </Link>
-                </Nav>
+                </Link>
                 {userInfo ? (
                     <>
                     <span>Hola, {userInfo.name} </span>

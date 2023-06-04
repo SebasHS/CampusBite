@@ -2,18 +2,36 @@ import express from "express";
 import seedRouter from "./routes/seedRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+class App {
+  constructor() {
+    this.app = express();
+    this.setupMiddlewares();
+    this.setupRoutes();
+    this.setupErrorHandling();
+  }
 
-app.use("/api/seed", seedRouter);
+  setupMiddlewares() {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+  }
 
-app.use("/api/users", userRouter);
+  setupRoutes() {
+    this.app.use("/api/seed", seedRouter);
+    this.app.use("/api/users", userRouter);
+  }
 
-app.use((err, req, res, next) => {
-  res.status(500).send({ message: err.message });
-}); 
+  setupErrorHandling() {
+    this.app.use((err, req, res, next) => {
+      res.status(500).send({ message: err.message });
+    });
+  }
 
+  start() {
+    const port = process.env.PORT || 4000;
+    this.app.listen(port, () => {
+      console.log(`Server en puerto ${port}`);
+    });
+  }
+}
 
-
-export default app;
+export default App;

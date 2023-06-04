@@ -1,4 +1,4 @@
-import mongoose, { Model } from "mongoose";
+import mongoose from "mongoose";
 
 /*const userSchema = new mongoose.Schema(
   {
@@ -15,11 +15,10 @@ import mongoose, { Model } from "mongoose";
 const User = mongoose.model("User", userSchema);
 export default User;
 */
-export default class userModel {
 
-    constructor(){ 
-    }
-    static iniciarUserModel() {
+export default class userModel {
+  constructor() {}
+  static iniciarUserModel() {
     const userSchema = new mongoose.Schema(
       {
         name: { type: String, required: true },
@@ -32,7 +31,7 @@ export default class userModel {
       }
     );
 
-    const User = mongoose.models.User || mongoose.model('User', userSchema);
+    const User = mongoose.models.User || mongoose.model("User", userSchema);
     return User;
   }
 }

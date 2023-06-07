@@ -8,7 +8,7 @@ const data = {
             price: 20,
             countInStock: 10,
             dealership: 'Cafeteria O1',
-            rating: 4.5,
+            rating: 2.5,
             numReviews: 5,
             description: 'Plato de mariscos encebollados y cocidos en limón, acompañados de camote, maíz y cebolla morada.'
         },
@@ -68,7 +68,7 @@ const data = {
             price: 25,
             countInStock: 10,
             dealership: 'Cafeteria F2',
-            rating: 3.5,
+            rating: 4.5,
             numReviews: 4,
             description: 'Rocoto relleno con carne picada, pasas, aceitunas y papas, gratinado con queso.'
         },
@@ -80,7 +80,7 @@ const data = {
             price: 15,
             countInStock: 20,
             dealership: 'Cafeteria O1',
-            rating: 5.0,
+            rating: 1.0,
             numReviews: 1,
             description: 'Pollo marinado en una mezcla de especias y cocido en parrilla.'
         },

@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/esm/Container';
 import { Helmet } from 'react-helmet-async';
 import Form from 'react-bootstrap/esm/Form';
 import Button from 'react-bootstrap/esm/Button';
+import LoadingBox from '../componentes/LoadingBox';
+import MessageBox from '../componentes/MessageBox';
 import axios from 'axios';
 
 const reducer = (state, action) => {
@@ -21,6 +23,8 @@ const reducer = (state, action) => {
   };
 
 export default function EditarDatosScreen(){
+
+
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
 
@@ -29,7 +33,7 @@ export default function EditarDatosScreen(){
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [{loadingUpdate}, dispatch] = useReducer(reducer, {
+    const [{loading, error, loadingUpdate}, dispatch] = useReducer(reducer, {
         loadingUpdate: false,
     });
     
@@ -66,6 +70,11 @@ export default function EditarDatosScreen(){
                  <title> Editar datos</title>
             </Helmet>
             <h1 className='mb-3'>Editar datos</h1>
+            {loading ? (
+                <LoadingBox></LoadingBox>
+            ) : error ? (
+                <MessageBox variant="danger">{error}</MessageBox>
+            ) : (
             <Form onSubmit={submitHandler}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
@@ -86,7 +95,7 @@ export default function EditarDatosScreen(){
             <div className='mb-3'>
                 <Button type="submit">Confirmar cambios</Button>
             </div>
-            </Form>
+            </Form>)}
         </Container>
     )
 }

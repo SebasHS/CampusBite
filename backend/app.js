@@ -19,6 +19,7 @@ class App {
   setupRoutes() {
     this.app.use("/api/seed", seedRouter);
     this.app.use("/api/users", userRouter);
+    this.app.use("/api/products", productRoutes)
     this.app.get("/api/products", (req, res) => {
       res.send(data.products);
     });

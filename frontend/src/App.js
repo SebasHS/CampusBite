@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/esm/Container';
 import Badge from 'react-bootstrap/Badge'
 import Nav from 'react-bootstrap/Nav'
 import CarritoCompraScreen from './pantallas/CarritoCompraScreen';
+import PagoQR_ExtraSprint2 from './pantallas/PagoQR_ExtraSprint2';
 import BarraBusqueda from './componentes/BarraBusqueda';
 
 
@@ -64,6 +65,7 @@ function App() {
                         <Route path="/login" element={<LoginScreen />}/>
                         <Route path="/register" element={<RegisterScreen />}/>
                         <Route path="/editardatos" element={<EditarDatosScreen />}/>
+                        <Route path="/shipping" element={<PagoQR_ExtraSprint2 />}/>
                     </Routes>
                 </Container>
             </main>

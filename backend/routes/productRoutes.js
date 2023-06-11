@@ -8,5 +8,6 @@ const ProductFacade = await productFacade.getInstance(productModel);
 
 productRouter.get("/", ProductFacade.getTodos);
 productRouter.get("/:id", ProductFacade.getPorId);
+productRouter.get("/slug/:slug", ProductFacade.getPorSlug);
 
 export default productRouter;

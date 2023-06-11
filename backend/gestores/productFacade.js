@@ -36,4 +36,15 @@ export default class userFacade extends FacadeFactory {
       res.status(404).send({ message: "Producto no encontrado" });
     }
   });
+
+  getPorSlug = expressAsyncHandler(async (req, res) => {
+    const product = await productModel
+      .iniciarProductModel()
+      .findOne({ slug: req.params.slug });
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).send({ message: "Producto no encontrado" });
+    }
+  });
 }

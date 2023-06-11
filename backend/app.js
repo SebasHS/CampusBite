@@ -21,17 +21,6 @@ class App {
     this.app.use("/api/seed", seedRouter);
     this.app.use("/api/users", userRouter);
     this.app.use("/api/products", productRoutes);
-    this.app.get("/api/products", (req, res) => {
-      res.send(data.products);
-    });
-    this.app.get("/api/products/slug/:slug", (req, res) => {
-      const product = data.products.find((x) => x.slug === req.params.slug);
-      if (product) {
-        res.send(product);
-      } else {
-        res.status(404).send({ message: "Producto no encontrado" });
-      }
-    });
   }
 
   setupErrorHandling() {

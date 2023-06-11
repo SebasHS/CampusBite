@@ -22,7 +22,11 @@ export default class userFacade extends FacadeFactory {
   }
 
   getTodos = expressAsyncHandler(async (req, res) => {
-    const products = await productModel.iniciarProductModel().find();
+    const d = new Date();
+    console.log(d);
+    const products = await productModel
+      .iniciarProductModel()
+      .find({ WeekDay: d.getDay() });
     res.send(products);
   });
 

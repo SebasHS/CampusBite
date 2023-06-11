@@ -39,12 +39,12 @@ export default function LoginScreen() {
   return (
     <Container fluid="sm">
       <Helmet>
-        <title>Inicio SesiÃ³n</title>
+        <title>Inicio Sesión</title>
       </Helmet>
-      <h1 className="mb-3">Inicio de SesiÃ³n</h1>
+      <h1 className="mb-3">Inicio de Sesión</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
-          <Form.Label> Correo electrÃ³nico</Form.Label>
+          <Form.Label> Correo electrónico</Form.Label>
           <Form.Control
             type="email"
             required
@@ -52,7 +52,7 @@ export default function LoginScreen() {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
-          <Form.Label> ContraseÃ±a</Form.Label>
+          <Form.Label> Contraseña</Form.Label>
           <Form.Control
             type="password"
             required
@@ -60,10 +60,10 @@ export default function LoginScreen() {
           />
         </Form.Group>
         <div className="mb-3">
-          <Button type="submit">Iniciar SesiÃ³n</Button>
+          <Button type="submit">Iniciar Sesión</Button>
         </div>
         <div className="mb-3">
-          Â¿No tienes una cuenta?{" "}
+          ¿No tienes una cuenta?{" "}
           <Link to={`/register?redirect=${redirect}`}> Registrate</Link>
         </div>
       </Form>

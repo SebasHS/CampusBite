@@ -22,6 +22,18 @@ export default class userFacade extends FacadeFactory {
   }
 
   getTodos = expressAsyncHandler(async (req, res) => {
-    const products = await productModel.iniciar.find();
+    const products = await productModel.iniciarProductModel().find();
+    res.send(products);
+  });
+
+  getPorId = expressAsyncHandler(async (req, res) => {
+    const product = await productModel
+      .iniciarProductModel()
+      .findById(req.params.id);
+    if (product) {
+      res.send(product);
+    } else {
+      res.status(404).send({ message: "Producto no encontrado" });
+    }
   });
 }

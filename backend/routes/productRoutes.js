@@ -7,5 +7,6 @@ const productRouter = express.Router();
 const ProductFacade = await productFacade.getInstance(productModel);
 
 productRouter.get("/", ProductFacade.getTodos);
+productRouter.get("/:id", ProductFacade.getPorId);
 
 export default productRouter;

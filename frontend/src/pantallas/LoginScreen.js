@@ -27,7 +27,7 @@ export default function LoginScreen() {
       localStorage.setItem("userInfo", JSON.stringify(res));
       navigate("/");
     } catch (err) {
-      alert("Email o contraseÃ±a invalida ");
+      alert("Email o contraseña invalida ");
     }
   };
   useEffect(() => {

@@ -41,7 +41,7 @@ export default class userFacade extends FacadeFactory {
         return;
       }
     }
-    res.status(401).send({ message: " Email o contraseÃ±a invalida" });
+    res.status(401).send({ message: " Email o contraseña invalida" });
   });
 
   register = expressAsyncHandler(async (req, res) => {

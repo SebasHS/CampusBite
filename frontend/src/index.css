@@ -159,8 +159,15 @@ main{
 }
 
 .qrYape{
-  width: 100%;
+  width: 50%;
   height: 550px;
+}
+
+@media (max-width: 900px){
+.qrYape{
+  width: 80%;
+  height: 350px;
+}
 }
 
 .center-btn-flex{

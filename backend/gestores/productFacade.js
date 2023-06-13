@@ -23,7 +23,6 @@ export default class userFacade extends FacadeFactory {
 
   getTodos = expressAsyncHandler(async (req, res) => {
     const d = new Date();
-    console.log(d);
     const products = await productModel
       .iniciarProductModel()
       .find({ WeekDay: d.getDay() });

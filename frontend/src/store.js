@@ -39,8 +39,9 @@ function reducer(state, action){
             (item) => item._id !== action.payload._id);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
             return {...state, cart: {...state.cart, cartItems}};
-        }    
-        
+        ;}    
+        case 'CART_CLEAR':
+            return { ...state, cart: { ...state.cart, cartItems: [] } };
         default:
             return state;
     }

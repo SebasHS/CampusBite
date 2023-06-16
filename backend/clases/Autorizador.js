@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 
 
-export default class Autentificador {
-
+export default class Autorizador {
+// Esta clase tiene el metodo "isAuth" para validar que el usuario esta accediendo a su propia informacion  
   static isAuth(req, res, next) {
     const authorization = req.headers.authorization;
     if (authorization) {

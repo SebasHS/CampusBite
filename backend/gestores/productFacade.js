@@ -2,8 +2,8 @@ import productModel from "../models/productModel.js";
 import FacadeFactory from "./FacadeFactory.js";
 import expressAsyncHandler from "express-async-handler";
 
-export default class userFacade extends FacadeFactory {
-  // Debido a que en JS no se puede privatizar el constructor, supondremos que no se podra llamar al constructor fuera de la clase
+export default class productFacade extends FacadeFactory {
+  // Fachada de las rutas utilizadas por la clase Producto
   instance;
   productModel;
 
@@ -12,9 +12,10 @@ export default class userFacade extends FacadeFactory {
     this.productModel = productModel;
   }
 
+  // Debido a que en JS no se puede privatizar el constructor, supondremos que no se podra llamar al constructor fuera de la clase
   static async getInstance(productModel) {
     if (this.instance == null) {
-      this.instance = new userFacade(productModel);
+      this.instance = new productFacade(productModel);
       return this.instance;
     } else {
       return this.instance;
@@ -51,3 +52,4 @@ export default class userFacade extends FacadeFactory {
     }
   });
 }
+

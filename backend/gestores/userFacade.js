@@ -5,7 +5,8 @@ import generadorToken from "../clases/generadorToken.js";
 import FacadeFactory from "./FacadeFactory.js";
 
 export default class userFacade extends FacadeFactory {
-  // Debido a que en JS no se puede privatizar el constructor, supondremos que no se podra llamar al constructor fuera de la clase
+  // Fachada de las rutas utilizadas por la clase Usuario
+
   instance;
   userModel;
 
@@ -14,6 +15,7 @@ export default class userFacade extends FacadeFactory {
     this.userModel = userModel;
   }
 
+  // Debido a que en JS no se puede privatizar el constructor, supondremos que no se podra llamar al constructor fuera de la clase
   static async getInstance(userModel) {
     if (this.instance == null) {
       this.instance = new userFacade(userModel);

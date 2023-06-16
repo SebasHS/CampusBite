@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import MessageBox from "../componentes/MessageBox";
 import ListGroup from "react-bootstrap/ListGroup";
-import axios from "axios";
+import { ServiceProducto } from "../services/ServiceProducto";
 
 export default function CarritoCompraScreen() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function CarritoCompraScreen() {
   } = state;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await ServiceProducto.obtenerPorId(item);
     if (data.countInStock < quantity) {
       window.alert("Lo sentimos!, este producto esta fuera de stock");
       return;
@@ -32,7 +32,7 @@ export default function CarritoCompraScreen() {
   };
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=/shipping');
+    navigate("/login?redirect=/shipping");
   };
 
   return (

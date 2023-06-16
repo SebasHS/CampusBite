@@ -1,5 +1,16 @@
-export class ServiceProducto{
-    static async obtenerProductos(){
-  
-    }
+import Axios from "axios";
+
+export class ServiceProducto {
+  static async obtenerProductos() {
+    const res = Axios.get("/api/products");
+    return res;
+  }
+  static async obtenerPorId(item) {
+    const res = Axios.get(`/api/products/${item._id}`);
+    return res;
+  }
+  static async obtenerPorSlug(slug) {
+    const res = Axios.get(`/api/products/slug/${slug}`);
+    return res;
+  }
 }

@@ -40,7 +40,7 @@ function DetallesPlatosScreen() {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = ServiceProducto.obtenerPorSlug(slug);
+        const result = await ServiceProducto.obtenerPorSlug(slug);
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });

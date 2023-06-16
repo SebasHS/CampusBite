@@ -1,6 +1,7 @@
 import  jwt  from "jsonwebtoken";
-export default class generadorToken{
 
+export default class generadorToken{
+//Esta clase tiene el metodo generarToken utilizado para generar el token del usuario que servira para una funcion en especÃ­fico
     static generarToken(user){
         return jwt.sign(
             {

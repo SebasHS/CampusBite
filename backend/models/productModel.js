@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 export default class productModel {
+   //Clase Producto que genera el modelo para MongoDB
   constructor() {}
   static iniciarProductModel() {
     const productSchema = new mongoose.Schema(

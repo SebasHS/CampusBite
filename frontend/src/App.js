@@ -13,6 +13,7 @@ import Nav from 'react-bootstrap/Nav'
 import CarritoCompraScreen from './pantallas/CarritoCompraScreen';
 import PagoQR_ExtraSprint2 from './pantallas/PagoQR_ExtraSprint2';
 import BarraBusqueda from './componentes/BarraBusqueda';
+import Footer from './componentes/Footer';
 
 
 function App() {
@@ -69,6 +70,9 @@ function App() {
                     </Routes>
                 </Container>
             </main>
+            <header className="MenuNav">
+                <Footer/>
+            </header>
         </div>
     </BrowserRouter>
     )

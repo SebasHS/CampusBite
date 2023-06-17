@@ -15,6 +15,7 @@ export default class productModel {
         rating: { type: Number, required: true },
         numReviews: { type: Number, required: true },
         description: { type: String, required: true },
+        WeekDay: { type: [Number], required: true },
       },
       {
         timestamps: true,

@@ -51,5 +51,6 @@ export default class productFacade extends FacadeFactory {
       res.status(404).send({ message: "Producto no encontrado" });
     }
   });
+
 }
 

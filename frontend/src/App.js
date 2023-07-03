@@ -30,6 +30,7 @@ function App() {
     const logoutHandler = () => {
         ctxDispatch({ type: 'USER_LOGOUT' });
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('cartItems');
         window.location.href = '/login';
     }
 

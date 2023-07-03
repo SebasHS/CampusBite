@@ -209,7 +209,7 @@ const data = {
       description:
         "Arroz preparado con una variedad de mariscos como camarones, calamares y mejillones, sazonado con especias y ají amarillo.",
       WeekDay: [2, 4, 5],
-    }
+    },
   ],
 };
 export default data;

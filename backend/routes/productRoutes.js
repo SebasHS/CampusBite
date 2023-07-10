@@ -2,6 +2,9 @@ import express from "express";
 import productModel from "../models/productModel.js";
 import productFacade from "../gestores/productFacade.js";
 import expressAsyncHandler from 'express-async-handler';
+import Autorizador from "../clases/Autorizador.js";
+import verificarAdmin from "../clases/verificarAdmin.js";
+const PAGE_SIZE = 10
 
 const productRouter = express.Router();
 
@@ -14,6 +17,28 @@ productRouter.get(
       res.send(categories);
     })
   );
+
+productRouter.get(
+  '/admin',
+  Autorizador.isAuth,
+  //verificarAdmin.esAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const { query } = req;
+    const page = query.page || 1;
+    const pageSize = query.pageSize || PAGE_SIZE;
+
+    const products = await productModel.iniciarProductModel().find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countProducts = await productModel.iniciarProductModel().countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
+  })
+)
 
 productRouter.get("/", ProductFacade.getTodos);
 productRouter.get("/:id", ProductFacade.getPorId);

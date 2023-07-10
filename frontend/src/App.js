@@ -20,6 +20,7 @@ import PagoQR_ExtraSprint2 from './pantallas/PagoQR_ExtraSprint2';
 import BarraBusqueda from './componentes/BarraBusqueda';
 import Footer from './componentes/Footer';
 import Button from 'react-bootstrap/Button';
+import RutaProtegida from './componentes/RutaProtegida';
 
 
 function App() {
@@ -39,93 +40,95 @@ function App() {
 
     useEffect(() => {
         const fetchCategories = async () => {
-        try {
-            const { data } = await axios.get(`/api/products/categories`);
-            setCategories(data);
-        } catch (err) {
-            toast.error(getError(err));
-        }
+            try {
+                const { data } = await axios.get(`/api/products/categories`);
+                setCategories(data);
+            } catch (err) {
+                toast.error(getError(err));
+            }
         };
         fetchCategories();
     }, []);
 
-    return(
+    return (
         <BrowserRouter>
-        <div className={sidebarIsOpen?'d-flex flex-column site-container active-cont':'d-flex flex-column site-container'}>
-            <header className='MenuNav'>
-                <Button
-                    variant="dark"
-                    onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
-                >
-                    <i className='fas fa-bars'></i>
-                </Button>
-                <Link to="/">CampusBite</Link>
-                    <BarraBusqueda/>
-                    <Link to="/cart" className='nav-link'>
+            <div className={sidebarIsOpen ? 'd-flex flex-column site-container active-cont' : 'd-flex flex-column site-container'}>
+                <header className='MenuNav'>
+                    <Button
+                        variant="dark"
+                        onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+                    >
+                        <i className='fas fa-bars'></i>
+                    </Button>
+                    <Link to="/">CampusBite</Link>
+                    <BarraBusqueda />
+                    { userInfo && !userInfo.isAdmin &&(<Link to="/cart" className='nav-link'>
                         Carrito
                         {cart.cartItems.length > 0 && (
                             <Badge pill bg="danger">
-                                {cart.cartItems.reduce((a, c) => a + c.quantity, 0)} 
+                                {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                             </Badge>
                         )}
+                    </Link>)}
+                    { userInfo && userInfo.isAdmin &&(<Link to="/cart" className='nav-link'>
+                        admin
+                        </Link>)}
+                    {userInfo ? (
+                        <>
+                            <span>Hola, {userInfo.name} </span>
+                            <div className='MenuPostLogueo'>
+                                <Link to="/editardatos">Editar Datos</Link>
+                                <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
+                            </div>
 
-
-                </Link>
-                {userInfo ? (
-                    <>
-                    <span>Hola, {userInfo.name} </span>
-                    <div className='MenuPostLogueo'>
-                        <Link to="/editardatos">Editar Datos</Link>
-                        <Link to="#logout" onClick={logoutHandler}>Desloguearse</Link>
-                    </div>
-                    
-                    </> 
-                ) : (
+                        </>
+                    ) : (
                         <Link to="/login">Inicio de sesión</Link>
-                )}
-                
-            </header>
-            <div
-          className={
-            sidebarIsOpen
-              ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
-              : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
-          }
-        >
-          <Nav className="flex-column text-white w-100 p-2">
-            <Nav.Item>
-              <strong>Categorias de platos</strong>
-            </Nav.Item>
-            {categories.map((category) => (
-              <Nav.Item key={category}>
-                <Link
-                  to={`/search/category=${category}`}
-                  onClick={() => setSidebarIsOpen(false)}
+                    )}
+
+                </header>
+                <div
+                    className={
+                        sidebarIsOpen
+                            ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
+                            : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+                    }
                 >
-                  <Nav.Link>{category}</Nav.Link>
-                </Link>
-              </Nav.Item>
-            ))}
-          </Nav>
-        </div>
-            <main>
-                <Container className='mt-2'>
-                    <Routes>
-                        <Route path="/product/:slug" element={<DetallesPlatosScreen />}/>
-                        <Route path="/cart" element={<CarritoCompraScreen />}/>
-                        <Route path="/" element={<PrincipalScreen />}/>
-                        <Route path="/login" element={<LoginScreen />}/>
-                        <Route path="/register" element={<RegisterScreen />}/>
-                        <Route path="/editardatos" element={<EditarDatosScreen />}/>
-                        <Route path="/shipping" element={<PagoQR_ExtraSprint2 />}/>
-                    </Routes>
-                </Container>
-            </main>
-            <header className="MenuNav">
-                <Footer/>
-            </header>
-        </div>
-    </BrowserRouter>
+                    <Nav className="flex-column text-white w-100 p-2">
+                        <Nav.Item>
+                            <strong>Categorias de platos</strong>
+                        </Nav.Item>
+                        {categories.map((category) => (
+                            <Nav.Item key={category}>
+                                <Link
+                                    to={`/search/category=${category}`}
+                                    onClick={() => setSidebarIsOpen(false)}
+                                >
+                                    <Nav.Link>{category}</Nav.Link>
+                                </Link>
+                            </Nav.Item>
+                        ))}
+                    </Nav>
+                </div>
+                <main>
+                    <Container className='mt-2'>
+                        <Routes>
+                            <Route path="/product/:slug" element={<DetallesPlatosScreen />} />
+                            <Route path="/cart" element={<CarritoCompraScreen />} />
+                            <Route path="/" element={<PrincipalScreen />} />
+                            <Route path="/login" element={<LoginScreen />} />
+                            <Route path="/register" element={<RegisterScreen />} />
+                            <Route path="/editardatos" element={
+                                <RutaProtegida><EditarDatosScreen /></RutaProtegida>} />
+                            <Route path="/shipping" element={<PagoQR_ExtraSprint2 />} />
+                        </Routes>
+                    </Container>
+                </main>
+                <header className="MenuNav">
+                    <Footer />
+                </header>
+            </div>
+        </BrowserRouter>
     )
 }
 

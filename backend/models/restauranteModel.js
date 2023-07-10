@@ -9,7 +9,7 @@ export default class restauranteModel {
         name: { type: String, required: true },
       },
       {
-        timestamps: true,
+        timestamps: true, 
       }
     );
 

@@ -70,7 +70,7 @@ function App() {
                             </Badge>
                         )}
                     </Link>)}
-                    { userInfo && userInfo.isAdmin &&(<Link to="/cart" className='nav-link'>
+                    { userInfo && userInfo.isAdmin &&(<Link to="/" className='nav-link'>
                         admin
                         </Link>)}
                     {userInfo ? (

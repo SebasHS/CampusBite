@@ -13,6 +13,7 @@ export default class userModel {
       },
       {
         timestamps: true,
+        discriminatorKey: 'kind'
       }
     );
 

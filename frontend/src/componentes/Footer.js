@@ -1,22 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ServiceRestaurante } from '../services/ServiceRestaurante';
 
 const Footer = () => {
-  const horas = [
-    { dia: 'Lunes - Viernes', horario: '7:00 AM - 6:00 PM' },
-    { dia: 'Sábado', horario: '7:00 AM - 2:00 PM' },
-    { dia: 'Domingo', horario: 'Cerrado' },
-  ];
+  const [horarios, setHorarios] = useState([])
+
+  const getData =  async () => {
+    try {
+      const {horarios} = await ServiceRestaurante.obtenerHorarios();
+      setHorarios(horarios);
+    } catch (err) {
+      setHorarios(err.message)
+    }
+  }
 
   return (
     <div>
-      <h2>Horario de atención:</h2>
+      <h2>Horarios de atención:</h2>
       <ul>
         {horas.map((hora, index) => (
           <li key={index}>
             {hora.dia}: {hora.horario}
           </li>
         ))}
-      </ul>
+      </ul> 
     </div>
   );
 };

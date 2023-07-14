@@ -22,7 +22,7 @@ export default class restauranteFacade extends FacadeFactory {
     }
   }
   getHorarios = expressAsyncHandler(async (req, res) => {
-    const horario = await restauranteModel.iniciarRestauranteModel().find({}, {"name":1,"horario":1,"_id":0,"kind":0});
+    const horario = await restauranteModel.iniciarRestauranteModel().find({}, {"name":1,"horario":1,"kind":0});
     res.send(horario);
   })
 }

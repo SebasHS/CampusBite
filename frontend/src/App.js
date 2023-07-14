@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useContext, useEffect, useState } from 'react';
 import { Store } from './Store';
 import { getError } from './utils';
+import { LinkContainer } from 'react-router-bootstrap';
 // import { LinkContainer } from 'react-bootstrap';
 // import { LinkContainer } from 'react-router-bootstrap';
 import RegisterScreen from './pantallas/RegisterScreen';
@@ -62,7 +63,7 @@ function App() {
                     </Button>
                     <Link to="/">CampusBite</Link>
                     <BarraBusqueda />
-                    { userInfo && !userInfo.isAdmin &&(<Link to="/cart" className='nav-link'>
+                    {userInfo && !userInfo.isAdmin && (<Link to="/cart" className='nav-link'>
                         Carrito
                         {cart.cartItems.length > 0 && (
                             <Badge pill bg="danger">
@@ -70,9 +71,9 @@ function App() {
                             </Badge>
                         )}
                     </Link>)}
-                    { userInfo && userInfo.isAdmin &&(<Link to="/" className='nav-link'>
+                    {userInfo && userInfo.isAdmin && (<Link to="/" className='nav-link'>
                         admin
-                        </Link>)}
+                    </Link>)}
                     {userInfo ? (
                         <>
                             <span>Hola, {userInfo.name} </span>
@@ -100,12 +101,15 @@ function App() {
                         </Nav.Item>
                         {categories.map((category) => (
                             <Nav.Item key={category}>
-                                <Link
-                                    to={`/search/category=${category}`}
+                                <LinkContainer
+                                    to={{
+                                        pathname: "/search",
+                                        search:`?category=${category}`
+                                    }}
                                     onClick={() => setSidebarIsOpen(false)}
                                 >
                                     <Nav.Link>{category}</Nav.Link>
-                                </Link>
+                                </LinkContainer>
                             </Nav.Item>
                         ))}
                     </Nav>

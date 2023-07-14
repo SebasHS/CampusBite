@@ -40,7 +40,6 @@ function Producto(props) {
         <Button onClick={() => addToCartHandler(product)}>
           Añadir al carrito
         </Button>
-        <Button>Editar</Button>
       </Card.Body>
     </Card>
   );

@@ -6,10 +6,7 @@ const RestauranteRouter = express.Router();
 
 const RestauranteFacade = await restauranteFacade.getInstance(restauranteModel);
 
-RestauranteRouter.get(
-    '/horarios-restau',
-    RestauranteFacade.getHorarios
-  );
-
+RestauranteRouter.get("/horarios-restau", RestauranteFacade.getHorarios);
+RestauranteRouter.get("/yape", RestauranteFacade.getYapeyNum);
 
 export default RestauranteRouter;

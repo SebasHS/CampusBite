@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Store } from "../Store";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,16 +6,50 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Modal from "react-bootstrap/Modal";
 import MessageBox from "../componentes/MessageBox";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ServiceProducto } from "../services/ServiceProducto";
 
 export default function CarritoCompraScreen() {
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "FETCH_SUCCESS":
+        return { products: action.payload, loading: false };
+      case "FETCH_FAIL":
+        return { ...state, loading: false, error: action.payload };
+      default:
+        return state;
+    }
+  };
+
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+    products: [],
+    loading: true,
+    error: "",
+  });
+  // const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch({ type: "FETCH_REQUEST" });
+      try {
+        const result = await ServiceProducto.obtenerProductos();
+        dispatch({ type: "FETCH_SUCCESS", payload: result.data });
+      } catch (err) {
+        dispatch({ type: "FETCH_FAIL", payload: err.message });
+      }
+
+      // setProducts(result.data);
+    };
+    fetchData();
+  }, []);
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
+
+  const [show, setShow] = useState(false);
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await ServiceProducto.obtenerPorId(item);
@@ -32,7 +66,10 @@ export default function CarritoCompraScreen() {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=/shipping");
+    setShow(true);
+  };
+  const closeHandler = () => {
+    setShow(false);
   };
 
   return (
@@ -122,6 +159,22 @@ export default function CarritoCompraScreen() {
               </ListGroup>
             </Card.Body>
           </Card>
+          <Modal show={show} onHide={closeHandler}>
+            <Modal.Header closeButton>
+              <Modal.Title>Realize el pago</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>
+                Por favor, paga el monto indicado anteriormente si compra los
+                productos de un mismo restaurante
+              </p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={closeHandler}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Col>
       </Row>
     </div>

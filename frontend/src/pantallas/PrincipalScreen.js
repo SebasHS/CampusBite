@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet-async";
 import { useEffect, useReducer } from "react";
 import LoadingBox from "../componentes/LoadingBox";
 import MessageBox from "../componentes/MessageBox";
-import axios from "axios";
 import { ServiceProducto } from "../services/ServiceProducto";
 
 function PrincipalScreen() {

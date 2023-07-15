@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect, useReducer } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Col from "react-bootstrap/Col";

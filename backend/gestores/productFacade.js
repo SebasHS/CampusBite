@@ -105,4 +105,25 @@ export default class productFacade extends FacadeFactory {
       pages: Math.ceil(countProducts / pageSize),
     });
   });
+
+  getAdminProds = expressAsyncHandler(async (req, res) => {
+    const { query } = req;
+    const page = query.page || 1;
+    const pageSize = query.pageSize || PAGE_SIZE;
+
+    const products = await productModel
+      .iniciarProductModel()
+      .find()
+      .skip(pageSize * (page - 1))
+      .limit(pageSize);
+    const countProducts = await productModel
+      .iniciarProductModel()
+      .countDocuments();
+    res.send({
+      products,
+      countProducts,
+      page,
+      pages: Math.ceil(countProducts / pageSize),
+    });
+  });
 }

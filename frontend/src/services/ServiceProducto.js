@@ -13,4 +13,14 @@ export class ServiceProducto {
     const res = Axios.get(`/api/products/slug/${slug}`);
     return res;
   }
+  static async obtenerCategorias() {
+    const res = Axios.get(`/api/products/categories`);
+    return res;
+  }
+  static async obtenerQuerys(page, query, category) {
+    const res = Axios.get(
+      `/api/products/search?page=${page}&query=${query}&category=${category}`
+    );
+    return res;
+  }
 }

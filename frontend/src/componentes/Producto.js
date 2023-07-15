@@ -2,9 +2,9 @@ import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Rating from "./Rating";
-import axios from "axios";
 import { useContext } from "react";
 import { Store } from "../Store";
+import { ServiceProducto } from "../services/ServiceProducto";
 
 function Producto(props) {
   const { product } = props;
@@ -17,7 +17,7 @@ function Producto(props) {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     console.log("item:", item._id);
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await ServiceProducto.obtenerPorId(item);
     if (data.countInStock < quantity) {
       window.alert("Lo sentimos!, este producto esta fuera de stock");
       return;

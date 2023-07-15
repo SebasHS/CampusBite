@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import axios from "axios";
 import PrincipalScreen from "./pantallas/PrincipalScreen";
 import DetallesPlatosScreen from "./pantallas/DetallesPlatosScreen";
 import LoginScreen from "./pantallas/LoginScreen";
@@ -23,6 +22,7 @@ import Footer from "./componentes/Footer";
 import Button from "react-bootstrap/Button";
 import RutaProtegida from "./componentes/RutaProtegida";
 import BusquedaProdScreen from "./pantallas/BusquedaProdScreen";
+import { ServiceProducto } from "../src/services/ServiceProducto";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await ServiceProducto.obtenerCategorias();
         setCategories(data);
       } catch (err) {
         toast.error(getError(err));

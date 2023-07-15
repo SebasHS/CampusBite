@@ -11,6 +11,7 @@ import Button from "react-bootstrap/Button";
 import Producto from "../componentes/Producto";
 import { LinkContainer } from "react-router-bootstrap";
 import Col from "react-bootstrap/Col";
+import { ServiceProducto } from "../services/ServiceProducto";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -53,8 +54,10 @@ export default function BusquedaProdScreen() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}`
+        const { data } = await ServiceProducto.obtenerQuerys(
+          page,
+          query,
+          category
         );
         console.log(data);
         dispatch({ type: "FETCH_SUCCESS", payload: data });
@@ -72,7 +75,7 @@ export default function BusquedaProdScreen() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axios.get(`/api/products/categories`);
+        const { data } = await ServiceProducto.obtenerCategorias();
         setCategories(data);
       } catch (err) {
         toast.error(getError(err));

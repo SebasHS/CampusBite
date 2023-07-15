@@ -68,18 +68,18 @@ main{
   align-items: center;
   background-color: #f0f0f0;
   padding: 20px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .MenuNav a {
-  color: #000000;
+  color: #000000 !important;
   text-decoration: none;
   font-size: 24px;
   font-weight: bold;
 }
 
 .MenuNav a:hover {
-  color: #e74c3c;
+  color: #e74c3c !important;
 }
 
 .MenuNav span {
@@ -99,6 +99,9 @@ main{
 
 .MenuNav button:hover {
   background-color: #c0392b;
+}
+.dropdownNav {
+  font-weight: 400 !important;
 }
 
 

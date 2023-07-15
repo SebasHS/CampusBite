@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import PrincipalScreen from "./pantallas/PrincipalScreen";
 import DetallesPlatosScreen from "./pantallas/DetallesPlatosScreen";
+import Dashboardscreen from "./pantallas/DashboardScreen";
 import LoginScreen from "./pantallas/LoginScreen";
 import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
@@ -23,6 +24,8 @@ import Button from "react-bootstrap/Button";
 import RutaProtegida from "./componentes/RutaProtegida";
 import BusquedaProdScreen from "./pantallas/BusquedaProdScreen";
 import { ServiceProducto } from "../src/services/ServiceProducto";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import RutaAdmin from "./componentes/RutaAdmin";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -80,9 +83,23 @@ function App() {
             </Link>
           )}
           {userInfo && userInfo.isAdmin && (
-            <Link to="/" className="nav-link">
-              admin
-            </Link>
+            <NavDropdown className="MenuNav" title="Admin">
+              <LinkContainer to="/productlist">
+                <NavDropdown.Item className="dropdownNav">
+                  Productos
+                </NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/orderlist">
+                <NavDropdown.Item className="dropdownNav">
+                  Pedidos
+                </NavDropdown.Item>
+              </LinkContainer>
+              <LinkContainer to="/admin/dashboard">
+                <NavDropdown.Item className="dropdownNav">
+                  Dashboard
+                </NavDropdown.Item>
+              </LinkContainer>
+            </NavDropdown>
           )}
           {userInfo ? (
             <>
@@ -142,6 +159,15 @@ function App() {
                 }
               />
               <Route path="/shipping" element={<PagoQR_ExtraSprint2 />} />
+              {/* Rutas de admin*/}
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <RutaAdmin>
+                    <Dashboardscreen />
+                  </RutaAdmin>
+                }
+              ></Route>
             </Routes>
           </Container>
         </main>

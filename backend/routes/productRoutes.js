@@ -1,25 +1,28 @@
 import express from "express";
 import productModel from "../models/productModel.js";
 import productFacade from "../gestores/productFacade.js";
-import expressAsyncHandler from 'express-async-handler';
+import expressAsyncHandler from "express-async-handler";
 import Autorizador from "../clases/Autorizador.js";
 import verificarAdmin from "../clases/verificarAdmin.js";
-const PAGE_SIZE = 10
+const PAGE_SIZE = 10;
 
 const productRouter = express.Router();
 
 const ProductFacade = await productFacade.getInstance(productModel);
 
 productRouter.get(
-    '/categories',
-    expressAsyncHandler(async (req, res) => {
-      const categories = await productModel.iniciarProductModel().find().distinct('category');
-      res.send(categories);
-    })
-  );
+  "/categories",
+  expressAsyncHandler(async (req, res) => {
+    const categories = await productModel
+      .iniciarProductModel()
+      .find()
+      .distinct("category");
+    res.send(categories);
+  })
+);
 
 productRouter.get(
-  '/admin',
+  "/admin",
   Autorizador.isAuth,
   //verificarAdmin.esAdmin,
   expressAsyncHandler(async (req, res) => {
@@ -27,10 +30,14 @@ productRouter.get(
     const page = query.page || 1;
     const pageSize = query.pageSize || PAGE_SIZE;
 
-    const products = await productModel.iniciarProductModel().find()
+    const products = await productModel
+      .iniciarProductModel()
+      .find()
       .skip(pageSize * (page - 1))
       .limit(pageSize);
-    const countProducts = await productModel.iniciarProductModel().countDocuments();
+    const countProducts = await productModel
+      .iniciarProductModel()
+      .countDocuments();
     res.send({
       products,
       countProducts,
@@ -38,9 +45,10 @@ productRouter.get(
       pages: Math.ceil(countProducts / pageSize),
     });
   })
-)
+);
 
 productRouter.get("/", ProductFacade.getTodos);
+productRouter.get("/search", ProductFacade.getFiltros);
 productRouter.get("/:id", ProductFacade.getPorId);
 productRouter.get("/slug/:slug", ProductFacade.getPorSlug);
 

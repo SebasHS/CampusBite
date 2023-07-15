@@ -24,7 +24,7 @@ export default class restauranteFacade extends FacadeFactory {
   getHorarios = expressAsyncHandler(async (req, res) => {
     const horario = await restauranteModel
       .iniciarRestauranteModel()
-      .find({}, { name: 1, horario: 1, _id: 0, kind: 0 });
+      .find({}, { name: 1, horario: 1, _id: 1, kind: 0 });
     res.send(horario);
   });
   getYapeyNum = expressAsyncHandler(async (req, res) => {

@@ -8,7 +8,7 @@ const data = {
       image: "/images/ceviche-pescado.jpg",
       price: 20,
       countInStock: 10,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 2.5,
       numReviews: 5,
       description:
@@ -23,7 +23,7 @@ const data = {
       image: "/images/papa-huancaina.jpg",
       price: 8,
       countInStock: 4,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.0,
       numReviews: 5,
       description:
@@ -38,7 +38,7 @@ const data = {
       image: "/images/anticucho-corazon.jpg",
       price: 18,
       countInStock: 3,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 5.0,
       numReviews: 10,
       description:
@@ -53,7 +53,7 @@ const data = {
       image: "/images/tallarin-saltado.jpg",
       price: 22,
       countInStock: 10,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 4.0,
       numReviews: 2,
       description:
@@ -68,7 +68,7 @@ const data = {
       image: "/images/lomo-saltado.jpg",
       price: 16,
       countInStock: 4,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.5,
       numReviews: 3,
       description:
@@ -83,7 +83,7 @@ const data = {
       image: "/images/rocoto-relleno.jpg",
       price: 25,
       countInStock: 10,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.5,
       numReviews: 4,
       description:
@@ -98,7 +98,7 @@ const data = {
       image: "/images/pollo-brasa.jpg",
       price: 15,
       countInStock: 20,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 1.0,
       numReviews: 1,
       description:
@@ -113,7 +113,7 @@ const data = {
       image: "/images/adobo-cerdo.jpg",
       price: 23,
       countInStock: 1,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.5,
       numReviews: 8,
       description:
@@ -128,7 +128,7 @@ const data = {
       image: "/images/tiradito-pescado.jpg",
       price: 18,
       countInStock: 8,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 3.0,
       numReviews: 3,
       description:
@@ -143,7 +143,7 @@ const data = {
       image: "/images/aji-gallina.jpg",
       price: 15,
       countInStock: 5,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.0,
       numReviews: 8,
       description:
@@ -158,7 +158,7 @@ const data = {
       image: "/images/seco-cordero.jpg",
       price: 26,
       countInStock: 3,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 4.5,
       numReviews: 6,
       description:
@@ -173,7 +173,7 @@ const data = {
       image: "/images/causa-limena.jpg",
       price: 12,
       countInStock: 8,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.5,
       numReviews: 10,
       description:
@@ -188,7 +188,7 @@ const data = {
       image: "/images/chupe-camarones.jpg",
       price: 24,
       countInStock: 6,
-      dealership: "Cafeteria O1",
+      dealership: "64b1d446e02a9284574f51aa",
       rating: 4.0,
       numReviews: 7,
       description:
@@ -203,7 +203,7 @@ const data = {
       image: "/images/arroz-mariscos.jpg",
       price: 28,
       countInStock: 5,
-      dealership: "Cafeteria F2",
+      dealership: "64b1d446e02a9284574f51ab",
       rating: 4.5,
       numReviews: 9,
       description:

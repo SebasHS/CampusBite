@@ -10,15 +10,16 @@ const seedRouter = express.Router();
 seedRouter.get("/", async (req, res) => {
   // await userModel.iniciarUserModel().deleteMany({});
   //const createdUsers = await User.insertMany(data.users);
-  //const Product = productModel.iniciarProductModel();
-  //await Product.deleteMany({});
-  //const createdProducts = await Product.insertMany(data.products);
-  const Restaurante = restauranteModel.iniciarRestauranteModel();
-  await Restaurante.deleteMany({});
-  const createdRestaurantes = await Restaurante.insertMany(data_restaurantes.restaurantes);
+  const Product = productModel.iniciarProductModel();
+  await Product.deleteMany({});
+  const createdProducts = await Product.insertMany(data.products);
+  //const Restaurante = restauranteModel.iniciarRestauranteModel();
+  //await Restaurante.deleteMany({});
+  //const createdRestaurantes = await Restaurante.insertMany(data_restaurantes.restaurantes);
   res.send({
     //createdUsers,
-    createdRestaurantes,
+    //createdRestaurantes,
+    createdProducts,
   });
 });
 export default seedRouter;

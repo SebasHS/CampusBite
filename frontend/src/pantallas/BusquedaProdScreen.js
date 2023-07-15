@@ -104,7 +104,7 @@ export default function BusquedaProdScreen() {
             <>
               <Row>
                 <Col>
-                  {countProducts === 0 ? "No" : countProducts} Results
+                  {countProducts === 0 ? "No" : countProducts} Resultados
                   {query !== "all" && " : " + query}
                   {category !== "all" && " : " + category}
                   {query !== "all" || category !== "all" ? (

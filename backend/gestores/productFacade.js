@@ -53,6 +53,14 @@ export default class productFacade extends FacadeFactory {
     }
   });
 
+  getCategorias = expressAsyncHandler(async (req, res) => {
+    const categories = await productModel
+      .iniciarProductModel()
+      .find()
+      .distinct("category");
+    res.send(categories);
+  });
+
   getFiltros = expressAsyncHandler(async (req, res) => {
     const d = new Date();
     const { query } = req;

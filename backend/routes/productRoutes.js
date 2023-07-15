@@ -10,16 +10,7 @@ const productRouter = express.Router();
 
 const ProductFacade = await productFacade.getInstance(productModel);
 
-productRouter.get(
-  "/categories",
-  expressAsyncHandler(async (req, res) => {
-    const categories = await productModel
-      .iniciarProductModel()
-      .find()
-      .distinct("category");
-    res.send(categories);
-  })
-);
+productRouter.get("/categories", ProductFacade.getCategorias);
 
 productRouter.get(
   "/admin",

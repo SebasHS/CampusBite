@@ -186,7 +186,7 @@ main{
   height: 100%;
   position: absolute;
   left: -300px;
-  background-color: #100901;
+  background-color: #e74c3c;
   transition: 0.5s;
 }
 
@@ -202,3 +202,11 @@ main{
   left: 0;
 }
 
+.nav-item a {
+  color: #2c3e50;
+  font-weight: 700;
+}
+.nav-item a:hover {
+  color: #27ae60;
+  font-weight: 700;
+}

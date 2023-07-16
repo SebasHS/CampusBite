@@ -1,6 +1,7 @@
 import productModel from "../models/productModel.js";
 import FacadeFactory from "./FacadeFactory.js";
 import expressAsyncHandler from "express-async-handler";
+import { ObjectId } from "mongodb";
 const PAGE_SIZE = 10;
 
 export default class productFacade extends FacadeFactory {
@@ -67,7 +68,6 @@ export default class productFacade extends FacadeFactory {
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;
     const category = query.category || "";
-    const order = query.order || "";
     const searchQuery = query.query || "";
 
     const queryFilter =
@@ -110,20 +110,43 @@ export default class productFacade extends FacadeFactory {
     const { query } = req;
     const page = query.page || 1;
     const pageSize = query.pageSize || PAGE_SIZE;
+    const idRestau = query.id;
 
     const products = await productModel
       .iniciarProductModel()
-      .find()
+      .find({
+        dealership: { $in: [idRestau] },
+      })
       .skip(pageSize * (page - 1))
       .limit(pageSize);
     const countProducts = await productModel
       .iniciarProductModel()
-      .countDocuments();
+      .countDocuments({
+        dealership: { $in: [idRestau] },
+      });
     res.send({
       products,
       countProducts,
       page,
       pages: Math.ceil(countProducts / pageSize),
+      query,
     });
+  });
+  postCrearProducto = expressAsyncHandler(async (req, res) => {
+    const ProductoNuevo = productModel.iniciarProductModel();
+    const newProducto = new ProductoNuevo({
+      name: "sample name " + Date.now(),
+      slug: "sample-name-" + Date.now(),
+      image: "/images/p1.jpg",
+      price: 0,
+      category: "sample category",
+      dealership: req.body.id,
+      countInStock: 0,
+      rating: 0,
+      numReviews: 0,
+      description: "sample description",
+    });
+    const product = await newProducto.save();
+    res.send({ message: "Product Created", product });
   });
 }

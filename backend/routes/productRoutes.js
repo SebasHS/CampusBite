@@ -15,7 +15,7 @@ productRouter.get("/categories", ProductFacade.getCategorias);
 productRouter.get(
   "/admin",
   Autorizador.isAuth,
-  //verificarAdmin.esAdmin,
+  verificarAdmin.esAdmin,
   ProductFacade.getAdminProds
 );
 
@@ -23,5 +23,12 @@ productRouter.get("/", ProductFacade.getTodos);
 productRouter.get("/search", ProductFacade.getFiltros);
 productRouter.get("/:id", ProductFacade.getPorId);
 productRouter.get("/slug/:slug", ProductFacade.getPorSlug);
+
+productRouter.post(
+  "/",
+  //Autorizador.isAuth,
+  //verificarAdmin.esAdmin,
+  ProductFacade.postCrearProducto
+);
 
 export default productRouter;

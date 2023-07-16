@@ -3,6 +3,7 @@ import "./App.css";
 import PrincipalScreen from "./pantallas/PrincipalScreen";
 import DetallesPlatosScreen from "./pantallas/DetallesPlatosScreen";
 import Dashboardscreen from "./pantallas/DashboardScreen";
+import ListaProductosScreen from "./pantallas/ListaProductosScreen";
 import LoginScreen from "./pantallas/LoginScreen";
 import { toast } from "react-toastify";
 import { useContext, useEffect, useState } from "react";
@@ -84,12 +85,12 @@ function App() {
           )}
           {userInfo && userInfo.isAdmin && (
             <NavDropdown className="MenuNav" title="Admin">
-              <LinkContainer to="/productlist">
+              <LinkContainer to="/admin/productos">
                 <NavDropdown.Item className="dropdownNav">
                   Productos
                 </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/orderlist">
+              <LinkContainer to="/admin/pedidos">
                 <NavDropdown.Item className="dropdownNav">
                   Pedidos
                 </NavDropdown.Item>
@@ -165,6 +166,14 @@ function App() {
                 element={
                   <RutaAdmin>
                     <Dashboardscreen />
+                  </RutaAdmin>
+                }
+              ></Route>
+              <Route
+                path="/admin/productos"
+                element={
+                  <RutaAdmin>
+                    <ListaProductosScreen />
                   </RutaAdmin>
                 }
               ></Route>

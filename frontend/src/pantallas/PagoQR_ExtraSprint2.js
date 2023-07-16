@@ -13,7 +13,6 @@ const PagoQR_ExtraSprint2 = () => {
 
   const handleButtonClick = () => {
     ctxDispatch({ type: "CART_CLEAR" });
-    localStorage.removeItem("cartItems");
     window.alert("Gracias por su pago");
     navigate("/");
   };

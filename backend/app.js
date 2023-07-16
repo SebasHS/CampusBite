@@ -3,6 +3,7 @@ import seedRouter from "./routes/seedRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import restauranteRoutes from "./routes/RestauranteRoutes.js";
+import pedidoRouter from "./routes/PedidoRoutes.js";
 import data from "./data.js";
 
 class App {
@@ -23,6 +24,7 @@ class App {
     this.app.use("/api/users", userRouter);
     this.app.use("/api/restaurantes", restauranteRoutes);
     this.app.use("/api/products", productRoutes);
+    this.app.use("/api/pedidos", pedidoRouter);
   }
 
   setupErrorHandling() {

@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useReducer, useState } from "react";
+import axios from "axios";
 import { Store } from "../Store";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,15 +11,40 @@ import Modal from "react-bootstrap/Modal";
 import MessageBox from "../componentes/MessageBox";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ServiceProducto } from "../services/ServiceProducto";
+import { toast } from "react-toastify";
+
+const ENVIO = 2;
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CREATE_REQUEST":
+      return { ...state, loading: true };
+    case "CREATE_SUCCESS":
+      return { ...state, loading: false };
+    case "CREATE_FAIL":
+      return { ...state, loading: false };
+    default:
+      return state;
+  }
+};
 
 export default function CarritoCompraScreen() {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {
-    cart: { cartItems },
-  } = state;
+  const { cart, userInfo } = state;
 
   const [show, setShow] = useState(false);
+
+  const [{ loading, error }, dispatch] = useReducer(reducer, {
+    loading: false,
+  });
+
+  const cantItems = cart.cartItems.reduce((a, c) => a + c.quantity, 0);
+
+  const precioItems = cart.cartItems.reduce(
+    (a, c) => a + c.price * c.quantity,
+    0
+  );
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await ServiceProducto.obtenerPorId(item);
@@ -41,6 +67,35 @@ export default function CarritoCompraScreen() {
     setShow(false);
   };
 
+  const placeOrderHandler = async () => {
+    try {
+      dispatch({ type: "CREATE_REQUEST" });
+      const { data } = await axios.post(
+        "/api/pedidos",
+        {
+          orderItems: cart.cartItems,
+          itemsPrice: precioItems,
+          costEnvio: ENVIO,
+          precioTotal: precioItems + ENVIO,
+        },
+        {
+          headers: {
+            authorization: `Software2 ${userInfo.token}`,
+          },
+        }
+      );
+      ctxDispatch({ type: "CART_CLEAR" });
+      dispatch({ type: "CREATE_SUCCESS" });
+      localStorage.removeItem("cartItems");
+      setShow(false);
+      window.alert("Pedido realizado!!");
+      navigate("/");
+    } catch (err) {
+      dispatch({ type: "CREATE_FAIL" });
+      setShow(false);
+    }
+  };
+
   return (
     <div>
       <Helmet>
@@ -49,13 +104,13 @@ export default function CarritoCompraScreen() {
       <h1>Carrito de compra - CampusBite</h1>
       <Row>
         <Col md={8}>
-          {cartItems.length === 0 ? (
+          {cart.cartItems.length === 0 ? (
             <MessageBox>
               El carrito esta vacio. <Link to="/">Añade un plato</Link>
             </MessageBox>
           ) : (
             <ListGroup>
-              {cartItems.map((item) => (
+              {cart.cartItems.map((item) => (
                 <ListGroup.Item key={item._id}>
                   <Row className="align-items-center">
                     <Col md={4}>
@@ -108,9 +163,15 @@ export default function CarritoCompraScreen() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    Subtotal ({cantItems}
                     {""} platos) : s/
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    {precioItems}
+                  </h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <h3>
+                    Envio : s/
+                    {ENVIO}
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -119,7 +180,7 @@ export default function CarritoCompraScreen() {
                       type="button"
                       variant="primary"
                       onClick={checkoutHandler}
-                      disabled={cartItems.length === 0}
+                      disabled={cart.cartItems.length === 0}
                     >
                       Pagar
                     </Button>
@@ -139,7 +200,7 @@ export default function CarritoCompraScreen() {
               </p>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" onClick={closeHandler}>
+              <Button variant="primary" onClick={placeOrderHandler}>
                 Save Changes
               </Button>
             </Modal.Footer>

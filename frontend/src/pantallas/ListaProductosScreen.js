@@ -79,7 +79,7 @@ export default function ListaProductsScreen() {
         const { data } = await ServiceRestaurante.crearProducto(id, userInfo);
         console.log("Producto creado");
         dispatch({ type: "CREATE_SUCCESS" });
-        navigate(`/admin/productos/${data.product._id}`);
+        navigate(`/admin/product/${data.product._id}`);
       } catch (err) {
         console.log(err);
         dispatch({ type: "CREATE_FAIL" });

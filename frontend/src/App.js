@@ -27,6 +27,7 @@ import BusquedaProdScreen from "./pantallas/BusquedaProdScreen";
 import { ServiceProducto } from "../src/services/ServiceProducto";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import RutaAdmin from "./componentes/RutaAdmin";
+import EditarProductoScreen from "./pantallas/EditarProductoScreen";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -174,6 +175,14 @@ function App() {
                 element={
                   <RutaAdmin>
                     <ListaProductosScreen />
+                  </RutaAdmin>
+                }
+              ></Route>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <RutaAdmin>
+                    <EditarProductoScreen />
                   </RutaAdmin>
                 }
               ></Route>

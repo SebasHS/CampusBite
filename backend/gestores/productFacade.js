@@ -132,7 +132,7 @@ export default class productFacade extends FacadeFactory {
       query,
     });
   });
-  postCrearProducto = expressAsyncHandler(async (req, res) => {
+  putCrearProducto = expressAsyncHandler(async (req, res) => {
     const ProductoNuevo = productModel.iniciarProductModel();
     const newProducto = new ProductoNuevo({
       name: "sample name " + Date.now(),
@@ -145,8 +145,30 @@ export default class productFacade extends FacadeFactory {
       rating: 0,
       numReviews: 0,
       description: "sample description",
+      WeekDay: [1, 2, 3, 4, 5, 6],
     });
     const product = await newProducto.save();
-    res.send({ message: "Product Created", product });
+    res.send({ message: "Plato creado", product });
+  });
+
+  putEditarProducto = expressAsyncHandler(async (req, res) => {
+    const productId = req.params.id;
+    const product = await productModel
+      .iniciarProductModel()
+      .findById(productId);
+    if (product) {
+      product.name = req.body.name;
+      product.slug = req.body.slug;
+      product.price = req.body.price;
+      product.image = req.body.image;
+      product.category = req.body.category;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
+      product.WeekDay = req.body.WeekDay;
+      await product.save();
+      res.send({ message: "Plato actualizado" });
+    } else {
+      res.status(404).send({ message: "Plato no encontrado" });
+    }
   });
 }

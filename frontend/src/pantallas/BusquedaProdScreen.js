@@ -37,9 +37,7 @@ const reducer = (state, action) => {
 export default function BusquedaProdScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  console.log(search);
   const SearchParam = new URLSearchParams(search);
-  console.log(SearchParam);
   const query = SearchParam.get("query") || "all";
   const category = SearchParam.get("category") || "all";
   const order = SearchParam.get("order") || "newest";

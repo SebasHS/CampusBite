@@ -26,9 +26,15 @@ productRouter.get("/slug/:slug", ProductFacade.getPorSlug);
 
 productRouter.post(
   "/",
-  //Autorizador.isAuth,
-  //verificarAdmin.esAdmin,
-  ProductFacade.postCrearProducto
+  Autorizador.isAuth,
+  verificarAdmin.esAdmin,
+  ProductFacade.putCrearProducto
+);
+productRouter.put(
+  "/:id",
+  Autorizador.isAuth,
+  verificarAdmin.esAdmin,
+  ProductFacade.putEditarProducto
 );
 
 export default productRouter;

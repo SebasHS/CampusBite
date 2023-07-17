@@ -1,10 +1,8 @@
 import express from "express";
 import productModel from "../models/productModel.js";
 import productFacade from "../gestores/productFacade.js";
-import expressAsyncHandler from "express-async-handler";
 import Autorizador from "../clases/Autorizador.js";
 import verificarAdmin from "../clases/verificarAdmin.js";
-const PAGE_SIZE = 10;
 
 const productRouter = express.Router();
 

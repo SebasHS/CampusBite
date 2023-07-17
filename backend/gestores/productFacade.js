@@ -1,7 +1,6 @@
 import productModel from "../models/productModel.js";
 import FacadeFactory from "./FacadeFactory.js";
 import expressAsyncHandler from "express-async-handler";
-import { ObjectId } from "mongodb";
 const PAGE_SIZE = 10;
 
 export default class productFacade extends FacadeFactory {

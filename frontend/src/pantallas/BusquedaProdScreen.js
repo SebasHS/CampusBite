@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import axios from "axios";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { getError } from "../utils";
 import { toast } from "react-toastify";

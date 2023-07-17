@@ -161,9 +161,9 @@ main{
   height: 80px;
 }
 
-.qrYape{
-  width: 50%;
-  height: 550px;
+.yapeimg{
+  width: 200px; 
+  height: auto;
 }
 
 @media (max-width: 900px){

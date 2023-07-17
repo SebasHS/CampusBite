@@ -1,5 +1,4 @@
-import { useContext, useReducer, useState } from "react";
-import axios from "axios";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { Store } from "../Store";
 import { Helmet } from "react-helmet-async";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ import MessageBox from "../componentes/MessageBox";
 import ListGroup from "react-bootstrap/ListGroup";
 import { ServiceProducto } from "../services/ServiceProducto";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const ENVIO = 2;
 
@@ -34,11 +34,23 @@ export default function CarritoCompraScreen() {
   const { cart, userInfo } = state;
 
   const [show, setShow] = useState(false);
+  const [yapeYNum, setYapeYNum] = useState([]);
 
   const [{ loading, error }, dispatch] = useReducer(reducer, {
     loading: false,
   });
 
+  useEffect(()=>{
+    const getData = async () => {
+      try {
+        const {data} = await axios.get("/api/restaurantes/yape");
+      setYapeYNum(data);
+      } catch (err) {
+        console.error(err);
+      }    };
+
+    getData();
+  }, [])
   const cantItems = cart.cartItems.reduce((a, c) => a + c.quantity, 0);
 
   const precioItems = cart.cartItems.reduce(
@@ -60,14 +72,15 @@ export default function CarritoCompraScreen() {
     ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
 
-  const checkoutHandler = () => {
+  const checkoutHandler = async () => {
+
     setShow(true);
   };
   const closeHandler = () => {
     setShow(false);
   };
 
-  const placeOrderHandler = async () => {
+  const placePedidoHandler = async () => {
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
@@ -194,13 +207,19 @@ export default function CarritoCompraScreen() {
               <Modal.Title>Realize el pago</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>
-                Por favor, paga el monto indicado anteriormente si compra los
-                productos de un mismo restaurante
-              </p>
+              <div className="row">
+              {yapeYNum.map((item) => (
+              <div key={item._id }className="col-6">
+                <h4>{item.name}</h4>
+                <img class="yapeimg" src={item.yape_img}/>
+                <p>Envie una captura del pago a este numero {item.tlf}</p>
+              </div>
+            ))}
+              </div>
+            
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="primary" onClick={placeOrderHandler}>
+              <Button variant="primary" onClick={placePedidoHandler}>
                 Save Changes
               </Button>
             </Modal.Footer>

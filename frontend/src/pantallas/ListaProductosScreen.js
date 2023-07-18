@@ -109,9 +109,9 @@ export default function ListaProductsScreen() {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>PRICE</th>
-                <th>CATEGORY</th>
+                <th>NOMBRE</th>
+                <th>PRECIO</th>
+                <th>CATEGORIA</th>
                 <th>ACCIONES</th>
               </tr>
             </thead>

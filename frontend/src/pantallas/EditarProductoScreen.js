@@ -166,7 +166,11 @@ export default function EditarProductoScreen() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="Imagen">
             <Form.Label>Imagen</Form.Label>
-            <Form.Control type="file" onChange={handleImageUpload} />
+            <Form.Control
+              placeholder="a"
+              type="file"
+              onChange={handleImageUpload}
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="Precio">
             <Form.Label>Precio</Form.Label>

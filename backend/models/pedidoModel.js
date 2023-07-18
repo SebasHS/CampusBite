@@ -29,7 +29,6 @@ export default class pedidoModel {
         user: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-          required: true,
         },
         isPaid: { type: Boolean, default: false },
         isEntregado: { type: Boolean, default: false },

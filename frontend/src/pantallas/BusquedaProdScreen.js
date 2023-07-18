@@ -82,14 +82,6 @@ export default function BusquedaProdScreen() {
     fetchCategories();
   }, [dispatch]);
 
-  const getFilterUrl = (filter) => {
-    const filterPage = filter.page || page;
-    const filterCategory = filter.category || category;
-    const filterQuery = filter.query || query;
-
-    return `/search?category=${filterCategory}&query=${filterQuery}&page=${filterPage}`;
-  };
-
   return (
     <div>
       <Helmet>

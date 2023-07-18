@@ -97,11 +97,6 @@ function App() {
                   Pedidos
                 </NavDropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/admin/dashboard">
-                <NavDropdown.Item className="dropdownNav">
-                  Dashboard
-                </NavDropdown.Item>
-              </LinkContainer>
             </NavDropdown>
           )}
           {userInfo ? (
